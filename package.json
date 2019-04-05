@@ -1,0 +1,32 @@
+{
+  "name": "node-red-contrib-json-rpc-processor",
+  "version": "1.0.0",
+  "description": "A Node-RED node to process JSON RPC 2.0 messages",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natcl/node-red-contrib-json-rpc-processor.git"
+  },
+  "keywords": [
+    "node-red"
+  ],
+  "author": "Nathanaël Lécaudé",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natcl/node-red-contrib-json-rpc-processor/issues"
+  },
+  "homepage": "https://github.com/natcl/node-red-contrib-json-rpc-processor#readme",
+  "dependencies": {
+    "ajv": "6.10.0"
+  },
+  "devDependencies": {
+    "standard": "*"
+  },
+  "node-red": {
+    "nodes": {
+      "json-rpc-processor": "json-rpc-processor.js"
+    }
+  }
+}

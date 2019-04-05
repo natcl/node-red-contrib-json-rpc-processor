@@ -1,0 +1,26 @@
+<script type="text/javascript">
+    RED.nodes.registerType('json-rpc-processor',{
+        category: 'function',
+        color: '#DEBD5C',
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:2,
+        icon: "parser-json.png",
+        label: function() {
+            return this.name||"json-rpc processor";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="json-rpc-processor">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="json-rpc-processor">
+    <p>A simple node that converts the message payloads into all lower-case characters</p>
+</script>
