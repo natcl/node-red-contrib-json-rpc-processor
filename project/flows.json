@@ -1730,7 +1730,7 @@
         "to": "",
         "reg": false,
         "x": 490,
-        "y": 1160,
+        "y": 1340,
         "wires": [
             []
         ]
@@ -1748,7 +1748,7 @@
         "once": true,
         "onceDelay": 0.1,
         "x": 130,
-        "y": 1160,
+        "y": 1340,
         "wires": [
             [
                 "a48e8663.af5258"
@@ -1768,7 +1768,7 @@
         "once": false,
         "onceDelay": 0.1,
         "x": 130,
-        "y": 1200,
+        "y": 1380,
         "wires": [
             [
                 "a48e8663.af5258"
@@ -2414,5 +2414,99 @@
         "x": 615,
         "y": 320,
         "wires": []
+    },
+    {
+        "id": "20fc7d60.a0194a",
+        "type": "change",
+        "z": "e9201577.141cd8",
+        "name": "getRandomAnimal",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[1..payload].{\t   \"jsonrpc\": \"2.0\",\t   \"method\": \"getRandomAnimal\",\t   \"params\": {},\t   \"id\": \"1234\"\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 1080,
+        "wires": [
+            [
+                "6e9b8f0b.bae2a8"
+            ]
+        ]
+    },
+    {
+        "id": "8a6837bb.cc7078",
+        "type": "inject",
+        "z": "e9201577.141cd8",
+        "name": "",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 1180,
+        "wires": [
+            [
+                "20fc7d60.a0194a"
+            ]
+        ]
+    },
+    {
+        "id": "2c72b58f.54e7f2",
+        "type": "inject",
+        "z": "e9201577.141cd8",
+        "name": "",
+        "topic": "",
+        "payload": "200",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 1220,
+        "wires": [
+            [
+                "20fc7d60.a0194a"
+            ]
+        ]
+    },
+    {
+        "id": "5c8d5db5.d1a17c",
+        "type": "inject",
+        "z": "e9201577.141cd8",
+        "name": "",
+        "topic": "",
+        "payload": "10000",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 1260,
+        "wires": [
+            [
+                "20fc7d60.a0194a"
+            ]
+        ]
     }
 ]
