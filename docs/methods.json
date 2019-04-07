@@ -1,0 +1,28 @@
+{
+  "getRandomAnimal": {
+    "request": {
+      "title": "getRandomAnimal",
+      "type": "object"
+    }
+  },
+  "add": {
+    "request": {
+      "title": "add",
+      "type": "object",
+      "properties": {
+        "number1": {
+          "type": "number",
+          "minimum": 0
+        },
+        "number2": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "number1",
+        "number2"
+      ]
+    }
+  }
+}
