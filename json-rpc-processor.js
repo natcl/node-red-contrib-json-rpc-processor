@@ -28,13 +28,13 @@ module.exports = function (RED) {
               if (node.methods[method]) delete node.methods[method]
             }
           }
-          node.warn(node.methods)
         } else if (typeof msg.methods !== 'object') {
           node.warn('Methods should be a valid object')
         }
         return
       }
 
+      // format error if msg contains an error
       if (msg.error) {
         msg.payload = {
           'jsonrpc': '2.0',
@@ -50,7 +50,7 @@ module.exports = function (RED) {
         return
       }
 
-      // process result
+      // format result
       if (msg.payload && msg.rpcMethod) {
         msg.payload = {
           'jsonrpc': '2.0',
