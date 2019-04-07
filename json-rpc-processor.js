@@ -35,6 +35,32 @@ module.exports = function (RED) {
         return
       }
 
+      if (msg.error) {
+        msg.payload = {
+          'jsonrpc': '2.0',
+          'error': {
+            'code': msg.rpcErrorCode ? msg.rpcErrorCode: -32000,
+            'message': msg.error.message,
+            'data': msg.error.source
+          },
+          'id': msg.rpcData.id
+        }
+        if (msg.req) msg.statusCode = 500
+        node.send([null, msg])
+        return
+      }
+
+      // process result
+      if (msg.payload && msg.rpcMethod) {
+        msg.payload = {
+          'jsonrpc': '2.0',
+          'result': msg.payload,
+          'id': msg.rpcData.id
+        }
+        node.send([msg, null])
+        return
+      }
+
       // process payload
       if (msg.payload) {
         // Validate that payload is valid JSON-RPC 2.0
