@@ -48,8 +48,55 @@ module.exports = function (RED) {
             },
             'id': -1
           }
-          node.error(`json-rpc-processor error: invalid JSON-RPC 2.0: ${ajv.errorsText(validateJsonRpc2Schema.errors)}`, msg)
+          if (msg.req) msg.statusCode = 500
           node.send([null, msg])
+          node.error(`json-rpc-processor error: invalid JSON-RPC 2.0: ${ajv.errorsText(validateJsonRpc2Schema.errors)}`, msg)
+        } else {
+          // if the incoming method is found in our method catalog
+          if (node.methods.hasOwnProperty(msg.payload.method)) {
+            // cache rpcData
+            const rpcData = {}
+            if (msg.payload.id !== undefined) {
+              rpcData.id = msg.payload.id
+            }
+            msg.rpcMethod = msg.payload.method
+            rpcData.method = msg.rpcMethod
+            msg.rpcData = rpcData
+
+            // validate parameters
+            let validate = node.methods[msg.payload.method].validate
+            if (!validate(msg.payload.params)) {
+              msg.payload = {
+                'jsonrpc': '2.0',
+                'error': {
+                  'code': -32602,
+                  'message': 'Invalid params',
+                  'data': validate.errors
+                },
+                'id': msg.payload.id
+              }
+              if (msg.req) msg.statusCode = 500
+              node.send([null, msg])
+              node.error(`json-rpc-processor error: invalid parameters: ${ajv.errorsText(validate.errors)}`, msg)
+            } else {
+              // if data is valid, we pass it in msg.payload
+              msg.payload = msg.payload.params
+              node.send([msg, null])
+            }
+          } else {
+            // if the method is not found, we send an error
+            node.error(`json-rpc-processor error: method ${msg.payload.method} not found`, msg)
+            msg.payload = {
+              'jsonrpc': '2.0',
+              'error': {
+                'code': -32601,
+                'message': `Method ${msg.payload.method} not found`,
+              },
+              'id': msg.payload.id
+            }
+            if (msg.req) msg.statusCode = 500
+            node.send([null, msg])
+          }
         }
       }
     })

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A Node-RED node to process JSON RPC 2.0 messages",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha \"test/**/*_spec.js\""
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,9 @@
     "ajv": "6.10.0"
   },
   "devDependencies": {
+    "mocha": "^6.1.0",
+    "node-red": "0.20.5",
+    "node-red-node-test-helper": "0.2.2",
     "standard": "*"
   },
   "node-red": {
