@@ -87,9 +87,9 @@ describe('json-rpc-processor Node', function () {
       n2.on('input', function (msg) {
         try {
           msg.payload.should.have.property('jsonrpc', '2.0')
-          msg.payload.should.have.property('id', -1)
-          msg.payload.error.should.have.property('code', -32600)
-          msg.payload.error.should.have.property('message', 'Invalid Request')
+          msg.payload.should.have.property('id', null)
+          msg.payload.error.should.have.property('code', -32700)
+          msg.payload.error.should.have.property('message', 'Parse error')
         } catch (error) {
           done(error)
         }
@@ -101,7 +101,7 @@ describe('json-rpc-processor Node', function () {
       })
       var err = logEvents[0][0]
       try {
-        err.msg.should.match(/^json-rpc-processor error: invalid JSON-RPC 2.0: /)
+        err.msg.should.match(/^json-rpc-processor error: Parse error: /)
         done()
       } catch (error) {
         done(error)
@@ -120,7 +120,7 @@ describe('json-rpc-processor Node', function () {
       n2.on('input', function (msg) {
         try {
           msg.payload.should.have.property('jsonrpc', '2.0')
-          msg.payload.should.have.property('id', -1)
+          msg.payload.should.have.property('id', '1234')
           msg.payload.error.should.have.property('code', -32600)
           msg.payload.error.should.have.property('message', 'Invalid Request')
         } catch (error) {
@@ -131,7 +131,7 @@ describe('json-rpc-processor Node', function () {
         'jsonrpc': '3.0',
         'method': 'add',
         'params': { 'number1': 3, 'number2': 'Hello' },
-        'id': 'c09edd92.71da5'
+        'id': '1234'
       }
       })
       helper.log().called.should.be.true()
@@ -140,7 +140,7 @@ describe('json-rpc-processor Node', function () {
       })
       var err = logEvents[0][0]
       try {
-        err.msg.should.match(/^json-rpc-processor error: invalid JSON-RPC 2.0: /)
+        err.msg.should.match(/^json-rpc-processor error: Invalid Request: /)
         done()
       } catch (error) {
         done(error)
@@ -248,7 +248,7 @@ describe('json-rpc-processor Node', function () {
       var logEvents = helper.log().args.filter(function (evt) {
         return evt[0].type === 'json-rpc-processor'
       })
-      var err = logEvents[1][0]
+      var err = logEvents[0][0]
       try {
         err.msg.should.match(/^json-rpc-processor error: invalid parameters: /)
         done()

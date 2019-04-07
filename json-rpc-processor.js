@@ -39,7 +39,7 @@ module.exports = function (RED) {
         msg.payload = {
           'jsonrpc': '2.0',
           'error': {
-            'code': msg.rpcErrorCode ? msg.rpcErrorCode: -32000,
+            'code': msg.rpcErrorCode ? msg.rpcErrorCode : -31999,
             'message': msg.error.message,
             'data': msg.error.source
           },
@@ -68,15 +68,15 @@ module.exports = function (RED) {
           msg.payload = {
             'jsonrpc': '2.0',
             'error': {
-              'code': -32600,
-              'message': 'Invalid Request',
+              'code': msg.payload.method ? -32600 : -32700,
+              'message': msg.payload.method ? 'Invalid Request' : 'Parse error',
               'data': validateJsonRpc2Schema.errors
             },
-            'id': -1
+            'id': msg.payload.method ? msg.payload.id : null
           }
           if (msg.req) msg.statusCode = 500
           node.send([null, msg])
-          node.error(`json-rpc-processor error: invalid JSON-RPC 2.0: ${ajv.errorsText(validateJsonRpc2Schema.errors)}`, msg)
+          node.error(`json-rpc-processor error: ${msg.payload.error.message}: ${ajv.errorsText(validateJsonRpc2Schema.errors)}`, msg)
         } else {
           // if the incoming method is found in our method catalog
           if (node.methods.hasOwnProperty(msg.payload.method)) {
@@ -116,7 +116,7 @@ module.exports = function (RED) {
               'jsonrpc': '2.0',
               'error': {
                 'code': -32601,
-                'message': `Method ${msg.payload.method} not found`,
+                'message': `Method ${msg.payload.method} not found`
               },
               'id': msg.payload.id
             }

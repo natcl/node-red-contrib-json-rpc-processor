@@ -974,8 +974,7 @@
         "y": 620,
         "wires": [
             [
-                "54955b94.df601c",
-                "9c1ee27b.fdc11"
+                "54955b94.df601c"
             ]
         ]
     },
@@ -1451,7 +1450,8 @@
         "y": 800,
         "wires": [
             [
-                "b9ed6f6.4f6e61"
+                "b9ed6f6.4f6e61",
+                "dd7901ed.5df208"
             ]
         ]
     },
@@ -1513,20 +1513,6 @@
         "complete": "false",
         "x": 610,
         "y": 160,
-        "wires": []
-    },
-    {
-        "id": "9c1ee27b.fdc11",
-        "type": "debug",
-        "z": "5667d58e.654b1c",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 540,
-        "y": 540,
         "wires": []
     },
     {
@@ -1754,5 +1740,20 @@
                 "7c086ca7.bc9484"
             ]
         ]
+    },
+    {
+        "id": "dd7901ed.5df208",
+        "type": "debug",
+        "z": "5667d58e.654b1c",
+        "name": "",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload.result ? payload.result : payload.error.message",
+        "targetType": "jsonata",
+        "x": 660,
+        "y": 840,
+        "wires": []
     }
 ]
