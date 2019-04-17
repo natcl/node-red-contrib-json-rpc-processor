@@ -70,7 +70,7 @@ module.exports = function (RED) {
             'error': {
               'code': msg.payload.method ? -32600 : -32700,
               'message': msg.payload.method ? 'Invalid Request' : 'Parse error',
-              'data': validateJsonRpc2Schema.errors
+              'data': [validateJsonRpc2Schema.errors, msg.payload]
             },
             'id': msg.payload.method ? msg.payload.id : null
           }
@@ -97,7 +97,7 @@ module.exports = function (RED) {
                 'error': {
                   'code': -32602,
                   'message': 'Invalid params',
-                  'data': validate.errors
+                  'data': [validate.errors, msg.payload]
                 },
                 'id': msg.payload.id
               }
