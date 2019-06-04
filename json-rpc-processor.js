@@ -16,7 +16,7 @@ module.exports = function (RED) {
     node.methods = {}
     node.on('input', function (msg) {
       // ingest and compile schema
-      if (msg.methods) {
+      if (msg.hasOwnProperty('methods')) {
         if (typeof msg.methods === 'object') {
           for (let method in msg.methods) {
             try {
@@ -35,7 +35,7 @@ module.exports = function (RED) {
       }
 
       // format error if msg contains an error
-      if (msg.error) {
+      if (msg.hasOwnProperty('error')) {
         msg.payload = {
           'jsonrpc': '2.0',
           'error': {
@@ -51,7 +51,7 @@ module.exports = function (RED) {
       }
 
       // format result
-      if (msg.payload && msg.rpcMethod) {
+      if (msg.hasOwnProperty('payload') && msg.rpcMethod) {
         msg.payload = {
           'jsonrpc': '2.0',
           'result': msg.payload,
@@ -62,7 +62,7 @@ module.exports = function (RED) {
       }
 
       // process payload
-      if (msg.payload) {
+      if (msg.hasOwnProperty('payload')) {
         // Validate that payload is valid JSON-RPC 2.0
         if (!validateJsonRpc2Schema(msg.payload)) {
           msg.payload = {
