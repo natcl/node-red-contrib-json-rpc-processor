@@ -63,4 +63,3 @@ typings/
 # Node-RED
 .config.json
 *.backup
-package-lock.json

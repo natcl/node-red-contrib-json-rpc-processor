@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-red": "^0.20.5",
-    "node-red-contrib-json-schema-validator": "fakstory/node-red-contrib-json-schema#0.0.4"
+    "node-red": "1.0.4"
   }
 }

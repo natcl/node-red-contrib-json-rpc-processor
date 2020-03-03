@@ -95,17 +95,19 @@ describe('json-rpc-processor Node', function () {
         }
       })
       n1.receive({ payload: '{{}}' })
-      helper.log().called.should.be.true()
-      var logEvents = helper.log().args.filter(function (evt) {
-        return evt[0].type === 'json-rpc-processor'
-      })
-      var err = logEvents[0][0]
-      try {
-        err.msg.should.match(/^json-rpc-processor error: Parse error: /)
-        done()
-      } catch (error) {
-        done(error)
-      }
+      setTimeout(function () {
+        helper.log().called.should.be.true()
+        var logEvents = helper.log().args.filter(function (evt) {
+          return evt[0].type === 'json-rpc-processor'
+        })
+        var err = logEvents[0][0]
+        try {
+          err.msg.should.match(/^json-rpc-processor error: Parse error: /)
+          done()
+        } catch (error) {
+          done(error)
+        }
+      }, 20)
     })
   })
 
@@ -134,17 +136,19 @@ describe('json-rpc-processor Node', function () {
         'id': '1234'
       }
       })
-      helper.log().called.should.be.true()
-      var logEvents = helper.log().args.filter(function (evt) {
-        return evt[0].type === 'json-rpc-processor'
-      })
-      var err = logEvents[0][0]
-      try {
-        err.msg.should.match(/^json-rpc-processor error: Invalid Request: /)
-        done()
-      } catch (error) {
-        done(error)
-      }
+      setTimeout(function () {
+        helper.log().called.should.be.true()
+        var logEvents = helper.log().args.filter(function (evt) {
+          return evt[0].type === 'json-rpc-processor'
+        })
+        var err = logEvents[0][0]
+        try {
+          err.msg.should.match(/^json-rpc-processor error: Invalid Request: /)
+          done()
+        } catch (error) {
+          done(error)
+        }
+      }, 20)
     })
   })
 
@@ -173,17 +177,19 @@ describe('json-rpc-processor Node', function () {
         'id': '1234'
       }
       })
-      helper.log().called.should.be.true()
-      var logEvents = helper.log().args.filter(function (evt) {
-        return evt[0].type === 'json-rpc-processor'
-      })
-      var err = logEvents[0][0]
-      try {
-        err.msg.should.match(/^json-rpc-processor error: method.*not found/)
-        done()
-      } catch (error) {
-        done(error)
-      }
+      setTimeout(function () {
+        helper.log().called.should.be.true()
+        var logEvents = helper.log().args.filter(function (evt) {
+          return evt[0].type === 'json-rpc-processor'
+        })
+        var err = logEvents[0][0]
+        try {
+          err.msg.should.match(/^json-rpc-processor error: method.*not found/)
+          done()
+        } catch (error) {
+          done(error)
+        }
+      }, 20)
     })
   })
 
@@ -244,17 +250,19 @@ describe('json-rpc-processor Node', function () {
         'id': '1234'
       }
       })
-      helper.log().called.should.be.true()
-      var logEvents = helper.log().args.filter(function (evt) {
-        return evt[0].type === 'json-rpc-processor'
-      })
-      var err = logEvents[0][0]
-      try {
-        err.msg.should.match(/^json-rpc-processor error: invalid parameters: /)
-        done()
-      } catch (error) {
-        done(error)
-      }
+      setTimeout(function () {
+        helper.log().called.should.be.true()
+        var logEvents = helper.log().args.filter(function (evt) {
+          return evt[0].type === 'json-rpc-processor'
+        })
+        var err = logEvents[0][0]
+        try {
+          err.msg.should.match(/^json-rpc-processor error: invalid parameters: /)
+          done()
+        } catch (error) {
+          done(error)
+        }
+      }, 20)
     })
   })
 
@@ -265,19 +273,21 @@ describe('json-rpc-processor Node', function () {
     helper.load(jsonRpcNode, flow, function () {
       var n1 = helper.getNode('n1')
       n1.receive({ methods: badMethods })
-      try {
-        helper.log().called.should.be.true()
-        var logEvents = helper.log().args.filter(function (evt) {
-          return evt[0].type === 'json-rpc-processor'
-        })
-        var msg = logEvents[0][0]
-        msg.should.have.property('msg', `json-rpc-processor error: Can't compile schema for method add, ignoring this method`)
-        n1.methods.should.have.property('getRandomAnimal')
-        n1.methods.should.not.have.property('add')
-        done()
-      } catch (error) {
-        done(error)
-      }
+      setTimeout(function () {
+        try {
+          helper.log().called.should.be.true()
+          var logEvents = helper.log().args.filter(function (evt) {
+            return evt[0].type === 'json-rpc-processor'
+          })
+          var msg = logEvents[0][0]
+          msg.should.have.property('msg', `json-rpc-processor error: Can't compile schema for method add, ignoring this method`)
+          n1.methods.should.have.property('getRandomAnimal')
+          n1.methods.should.not.have.property('add')
+          done()
+        } catch (error) {
+          done(error)
+        }
+      }, 20)
     })
   })
 
@@ -288,17 +298,19 @@ describe('json-rpc-processor Node', function () {
     helper.load(jsonRpcNode, flow, function () {
       var n1 = helper.getNode('n1')
       n1.receive({ methods: goodMethods })
-      try {
-        n1.methods.should.have.property('getRandomAnimal')
-        n1.methods.should.have.property('add')
-        n1.methods.getRandomAnimal.should.have.property('validate')
-        n1.methods.add.should.have.property('validate')
-        n1.methods.getRandomAnimal.should.have.property('request')
-        n1.methods.add.should.have.property('request')
-        done()
-      } catch (error) {
-        done(error)
-      }
+      setTimeout(function () {
+        try {
+          n1.methods.should.have.property('getRandomAnimal')
+          n1.methods.should.have.property('add')
+          n1.methods.getRandomAnimal.should.have.property('validate')
+          n1.methods.add.should.have.property('validate')
+          n1.methods.getRandomAnimal.should.have.property('request')
+          n1.methods.add.should.have.property('request')
+          done()
+        } catch (error) {
+          done(error)
+        }
+      }, 20)
     })
   })
 })
