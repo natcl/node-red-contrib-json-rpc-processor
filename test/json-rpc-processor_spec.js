@@ -95,7 +95,7 @@ describe('json-rpc-processor Node', function () {
         }
       })
       n1.receive({ payload: '{{}}' })
-      setTimeout(function () {
+      setImmediate(function () {
         helper.log().called.should.be.true()
         var logEvents = helper.log().args.filter(function (evt) {
           return evt[0].type === 'json-rpc-processor'
@@ -107,7 +107,7 @@ describe('json-rpc-processor Node', function () {
         } catch (error) {
           done(error)
         }
-      }, 20)
+      })
     })
   })
 
@@ -136,7 +136,7 @@ describe('json-rpc-processor Node', function () {
         'id': '1234'
       }
       })
-      setTimeout(function () {
+      setImmediate(function () {
         helper.log().called.should.be.true()
         var logEvents = helper.log().args.filter(function (evt) {
           return evt[0].type === 'json-rpc-processor'
@@ -148,7 +148,7 @@ describe('json-rpc-processor Node', function () {
         } catch (error) {
           done(error)
         }
-      }, 20)
+      })
     })
   })
 
@@ -177,7 +177,7 @@ describe('json-rpc-processor Node', function () {
         'id': '1234'
       }
       })
-      setTimeout(function () {
+      setImmediate(function () {
         helper.log().called.should.be.true()
         var logEvents = helper.log().args.filter(function (evt) {
           return evt[0].type === 'json-rpc-processor'
@@ -189,7 +189,7 @@ describe('json-rpc-processor Node', function () {
         } catch (error) {
           done(error)
         }
-      }, 20)
+      })
     })
   })
 
@@ -250,7 +250,7 @@ describe('json-rpc-processor Node', function () {
         'id': '1234'
       }
       })
-      setTimeout(function () {
+      setImmediate(function () {
         helper.log().called.should.be.true()
         var logEvents = helper.log().args.filter(function (evt) {
           return evt[0].type === 'json-rpc-processor'
@@ -262,7 +262,7 @@ describe('json-rpc-processor Node', function () {
         } catch (error) {
           done(error)
         }
-      }, 20)
+      })
     })
   })
 
@@ -273,7 +273,7 @@ describe('json-rpc-processor Node', function () {
     helper.load(jsonRpcNode, flow, function () {
       var n1 = helper.getNode('n1')
       n1.receive({ methods: badMethods })
-      setTimeout(function () {
+      setImmediate(function () {
         try {
           helper.log().called.should.be.true()
           var logEvents = helper.log().args.filter(function (evt) {
@@ -287,7 +287,7 @@ describe('json-rpc-processor Node', function () {
         } catch (error) {
           done(error)
         }
-      }, 20)
+      })
     })
   })
 
@@ -298,7 +298,7 @@ describe('json-rpc-processor Node', function () {
     helper.load(jsonRpcNode, flow, function () {
       var n1 = helper.getNode('n1')
       n1.receive({ methods: goodMethods })
-      setTimeout(function () {
+      setImmediate(function () {
         try {
           n1.methods.should.have.property('getRandomAnimal')
           n1.methods.should.have.property('add')
@@ -310,7 +310,7 @@ describe('json-rpc-processor Node', function () {
         } catch (error) {
           done(error)
         }
-      }, 20)
+      })
     })
   })
 })
