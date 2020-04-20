@@ -14,7 +14,7 @@ I wanted tp create a node that is transport agnostic to leverage the different t
 
 The node is used in a similar fashion as some of the parser nodes like the JSON node, one instance is used after the transport to parse and validate the message and another instance is used before the response to format the outgoing message.
 
-![server](./docs/images/server.png "Server")
+![server](https://github.com/natcl/node-red-contrib-jsonrpc-processor/raw/master/docs/images/server.png "Server")
 
 ### Specifying methods
 
