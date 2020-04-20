@@ -20,7 +20,7 @@ The node is used in a similar fashion as some of the parser nodes like the JSON 
 
 In order to work, the node needs to know which method it needs to process and validate. The methods to process are passed to the node using the `msg.methods` property. Each method has a [JSON Schema](https://json-schema.org) attached to it that will allow the node to validate the method's parameters. Here is a simple example that defines two methods:
 
-```
+```json
 {
   "getRandomAnimal": {
     "request": {
