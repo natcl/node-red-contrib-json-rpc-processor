@@ -63,3 +63,6 @@ typings/
 # Node-RED
 .config.json
 *.backup
+
+# OSX
+.DS_Store
