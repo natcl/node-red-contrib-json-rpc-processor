@@ -15,9 +15,9 @@
   "author": "Nathanaël Lécaudé",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/natcl/node-red-contrib-jsonrpc-processor/issues"
+    "url": "https://github.com/natcl/node-red-contrib-json-rpc-processor/issues"
   },
-  "homepage": "https://github.com/natcl/node-red-contrib-jsonrpc-processor#readme",
+  "homepage": "https://github.com/natcl/node-red-contrib-json-rpc-processor#readme",
   "dependencies": {
     "ajv": "6.12.4"
   },
