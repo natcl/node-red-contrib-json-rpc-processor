@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-json-rpc-processor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Node-RED node to process JSON RPC 2.0 messages",
   "scripts": {
     "test": "mocha \"test/**/*_spec.js\""
@@ -22,9 +22,9 @@
     "ajv": "6.12.1"
   },
   "devDependencies": {
-    "mocha": "^7.1.1",
-    "node-red": "1.0.5",
-    "node-red-node-test-helper": "0.2.3",
+    "mocha": "8.1.3",
+    "node-red": "1.1.3",
+    "node-red-node-test-helper": "0.2.5",
     "standard": "*"
   },
   "node-red": {
