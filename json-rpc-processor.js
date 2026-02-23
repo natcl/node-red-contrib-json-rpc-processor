@@ -1,8 +1,6 @@
 module.exports = function (RED) {
   const Ajv = require('ajv')
-  const ajv = new Ajv({ allErrors: true, schemaId: 'auto' })
-  ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'))
-  ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-06.json'))
+  const ajv = new Ajv({ allErrors: true, allowUnionTypes: true })
   let validateJsonRpc2Schema = null
   try {
     validateJsonRpc2Schema = ajv.compile(require('./schemas/JSON-RPC-2.0.json'))

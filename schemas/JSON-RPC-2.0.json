@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "description": "A JSON RPC 2.0 request",
     "oneOf": [
         {
@@ -23,10 +23,7 @@
                 },
                 "id": {
                     "type": [ "string", "number", "null" ],
-                    "note": [
-                        "While allowed, null should be avoided: http://www.jsonrpc.org/specification#id1",
-                        "While allowed, a number with a fractional part should be avoided: http://www.jsonrpc.org/specification#id2"
-                    ]
+                    "$comment": "While allowed, null should be avoided (http://www.jsonrpc.org/specification#id1). While allowed, a number with a fractional part should be avoided (http://www.jsonrpc.org/specification#id2)."
                 },
                 "params": {
                     "type": [ "array", "object" ]

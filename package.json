@@ -19,12 +19,12 @@
   },
   "homepage": "https://github.com/natcl/node-red-contrib-json-rpc-processor#readme",
   "dependencies": {
-    "ajv": "6.12.4"
+    "ajv": "8.18.0"
   },
   "devDependencies": {
-    "mocha": "10.2.0",
-    "node-red": "3.1.3",
-    "node-red-node-test-helper": "0.3.3",
+    "mocha": "11.7.5",
+    "node-red": "4.1.5",
+    "node-red-node-test-helper": "0.3.6",
     "standard": "*"
   },
   "node-red": {
