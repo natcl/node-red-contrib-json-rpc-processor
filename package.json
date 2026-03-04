@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "mocha": "11.7.5",
-    "node-red": "4.1.5",
+    "node-red": "4.1.6",
     "node-red-node-test-helper": "0.3.6",
     "standard": "*"
   },
@@ -31,5 +31,8 @@
     "nodes": {
       "json-rpc-processor": "json-rpc-processor.js"
     }
+  },
+  "volta": {
+    "node": "24.14.0"
   }
 }
