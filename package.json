@@ -22,8 +22,8 @@
     "ajv": "8.20.0"
   },
   "devDependencies": {
-    "mocha": "11.7.6",
-    "node-red": "4.1.10",
+    "mocha": "11.8.0",
+    "node-red": "4.1.13",
     "node-red-node-test-helper": "0.3.6",
     "standard": "*"
   },
